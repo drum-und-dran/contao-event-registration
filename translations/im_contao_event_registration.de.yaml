@@ -12,6 +12,7 @@ delimiter_semi: '<code>;</code> (Semikolon)'
 already_confirmed: Diese Registrierung wurde bereits bestätigt.
 already_cancelled: Diese Registrierung wurde bereits storniert.
 cannot_confirm: Registrierungen für dieses Event können nicht mehr bestätigt werden.
+cannot_confirm_expired: Diese Registrierung ist abgelaufen, weil die Double-Opt-in-Bestätigung nicht innerhalb von 24 Stunden erfolgt ist.
 cannot_cancel: Anmeldungen für dieses Event können nicht mehr storniert werden.
 header_count_title: Anmeldungen
 header_waiting_title: Warteliste
