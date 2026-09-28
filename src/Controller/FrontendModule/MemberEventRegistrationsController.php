@@ -23,7 +23,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 
 /**
- * Lists all (confirmed) registrations of the current member.
+ * Lists all active registrations of the current member.
  */
 #[AsFrontendModule(self::TYPE, 'user', 'mod_member_event_registrations')]
 class MemberEventRegistrationsController extends AbstractFrontendModuleController
@@ -72,7 +72,7 @@ class MemberEventRegistrationsController extends AbstractFrontendModuleControlle
             $registration['cancel_url'] = $this->eventRegistration->createStatusUpdateUrl($event, $model, EventRegistrationCancelController::ACTION);
             $registration['event'] = $this->eventsModuleProxy->getProcessedEvent($event, $model->created);
 
-            if (!$model->confirmed && $this->eventRegistration->getMainEvent($event)->reg_requireConfirm) {
+            if (!$model->confirmed && !$model->expired_at && $this->eventRegistration->getMainEvent($event)->reg_requireConfirm) {
                 $registration['confirm_url'] = $this->eventRegistration->createStatusUpdateUrl($event, $model, EventRegistrationConfirmController::ACTION);
             }
 
