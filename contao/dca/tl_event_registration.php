@@ -67,6 +67,18 @@ $GLOBALS['TL_DCA']['tl_event_registration'] = [
             'eval' => ['tl_class' => 'clr w50'],
             'sql' => ['type' => 'boolean', 'default' => false],
         ],
+        'confirmed_at' => [
+            'inputType' => 'text',
+            'exclude' => true,
+            'eval' => ['rgxp' => 'datim', 'readonly' => true, 'tl_class' => 'w50'],
+            'sql' => ['type' => 'integer', 'unsigned' => true, 'notnull' => false, 'default' => null],
+        ],
+        'expired_at' => [
+            'inputType' => 'text',
+            'exclude' => true,
+            'eval' => ['rgxp' => 'datim', 'readonly' => true, 'tl_class' => 'w50'],
+            'sql' => ['type' => 'integer', 'unsigned' => true, 'notnull' => false, 'default' => null],
+        ],
         'cancelled' => [
             'inputType' => 'checkbox',
             'exclude' => true,
@@ -129,6 +141,6 @@ $GLOBALS['TL_DCA']['tl_event_registration'] = [
     ],
 
     'palettes' => [
-        'default' => '{reg_legend},form_data,amount,confirmed,cancelled',
+        'default' => '{reg_legend},form_data,amount,confirmed,confirmed_at,expired_at,cancelled',
     ],
 ];

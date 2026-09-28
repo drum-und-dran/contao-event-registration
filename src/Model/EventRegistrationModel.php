@@ -20,7 +20,9 @@ use Contao\Model;
  * @property int    $member
  * @property int    $amount
  * @property bool   $confirmed
+ * @property int|null $confirmed_at
  * @property bool   $cancelled
+ * @property int|null $expired_at
  * @property string $form_data
  */
 class EventRegistrationModel extends Model
