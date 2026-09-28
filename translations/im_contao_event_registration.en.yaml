@@ -1,3 +1,7 @@
+cancel_success_title: "Your participation has been cancelled"
+cancel_success_heading: "Thank you for cancelling your registration!"
+cancel_success_text: "We wish you all the best and hope it works out next time."
+cancel_success_signature: "Your MINTphilmal e.V. math team"
 cannot_register: Registration to this event is currently not possible.
 reg_uuid: UUID
 reg_eventid: Event ID

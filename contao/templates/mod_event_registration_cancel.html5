@@ -2,7 +2,12 @@
 
 <?php $this->block('content'); ?>
 
-  <?php if ($this->message): ?>
+  <?php if ($this->cancellationSuccessful): ?>
+    <h1><?= $this->trans('cancel_success_title', [], 'im_contao_event_registration') ?></h1>
+    <h2><?= $this->trans('cancel_success_heading', [], 'im_contao_event_registration') ?></h2>
+    <p><?= $this->trans('cancel_success_text', [], 'im_contao_event_registration') ?></p>
+    <p><?= $this->trans('cancel_success_signature', [], 'im_contao_event_registration') ?></p>
+  <?php elseif ($this->message): ?>
     <p><?= $this->message ?></p>
   <?php elseif ($this->confirmationRequired): ?>
     <p><?= $this->trans('cancel_confirmation', [], 'im_contao_event_registration') ?></p>

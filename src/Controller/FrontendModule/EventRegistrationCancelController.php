@@ -64,6 +64,7 @@ class EventRegistrationCancelController extends AbstractFrontendModuleController
         $registrations = [];
         $template->message = [];
         $template->confirmationRequired = false;
+        $template->cancellationSuccessful = false;
 
         foreach ((array) $uuids as $uuid) {
             if (!$registration = EventRegistrationModel::findOneByUuid($uuid)) {
@@ -146,5 +147,6 @@ class EventRegistrationCancelController extends AbstractFrontendModuleController
 
         $registration->cancelled = true;
         $registration->save();
+        $template->cancellationSuccessful = true;
     }
 }

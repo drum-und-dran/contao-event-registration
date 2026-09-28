@@ -1,3 +1,7 @@
+cancel_success_title: "Deine Teilnahme wurde abgesagt"
+cancel_success_heading: "Vielen Dank für die Abmeldung!"
+cancel_success_text: "Wir wünschen Dir alles Gute und hoffen, es klappt beim nächsten Mal."
+cancel_success_signature: "Dein Matheteam vom MINTphilmal e.V."
 cannot_register: Die Registrierung zu diesem Event ist nicht mehr möglich.
 reg_uuid: UUID
 reg_eventid: Event ID
