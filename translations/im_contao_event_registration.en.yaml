@@ -18,6 +18,7 @@ cancel_confirmation: Are you sure you want to cancel your participation?
 cancel_confirmation_yes: Yes, cancel participation
 already_cancelled: This event registration has already been cancelled.
 cannot_confirm: Registrations for this event cannot be confirmed anymore.
+cannot_confirm_expired: This registration has expired because the double opt-in confirmation was not completed within 24 hours.
 cannot_cancel: Registrations for this event cannot be cancelled anymore.
 header_count_title: Registrations
 header_waiting_title: Waiting list

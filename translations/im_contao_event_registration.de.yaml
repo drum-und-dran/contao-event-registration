@@ -18,6 +18,7 @@ cancel_confirmation: Bist du dir wirklich sicher, dass du deine Teilnahme storni
 cancel_confirmation_yes: Ja, Teilnahme stornieren
 already_cancelled: Diese Registrierung wurde bereits storniert.
 cannot_confirm: Registrierungen für dieses Event können nicht mehr bestätigt werden.
+cannot_confirm_expired: Diese Registrierung ist abgelaufen, weil die Double-Opt-in-Bestätigung nicht innerhalb von 24 Stunden erfolgt ist.
 cannot_cancel: Anmeldungen für dieses Event können nicht mehr storniert werden.
 header_count_title: Anmeldungen
 header_waiting_title: Warteliste
