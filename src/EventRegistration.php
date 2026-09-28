@@ -27,7 +27,6 @@ use Terminal42\ChangeLanguage\Terminal42ChangeLanguageBundle;
 
 class EventRegistration
 {
-    public const CONFIRMATION_EXPIRATION_SECONDS = 86400;
     public static $eventTokens = [
         'title',
         'location',

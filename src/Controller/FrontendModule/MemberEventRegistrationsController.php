@@ -72,7 +72,7 @@ class MemberEventRegistrationsController extends AbstractFrontendModuleControlle
             $registration['cancel_url'] = $this->eventRegistration->createStatusUpdateUrl($event, $model, EventRegistrationCancelController::ACTION);
             $registration['event'] = $this->eventsModuleProxy->getProcessedEvent($event, $model->created);
 
-            if (!$model->confirmed && !$model->expired_at && $this->eventRegistration->getMainEvent($event)->reg_requireConfirm) {
+            if (!$model->confirmed && $this->eventRegistration->getMainEvent($event)->reg_requireConfirm) {
                 $registration['confirm_url'] = $this->eventRegistration->createStatusUpdateUrl($event, $model, EventRegistrationConfirmController::ACTION);
             }
 

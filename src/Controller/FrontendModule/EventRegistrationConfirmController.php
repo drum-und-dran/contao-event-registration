@@ -133,19 +133,6 @@ class EventRegistrationConfirmController extends AbstractFrontendModuleControlle
 
             $now = time();
 
-            if ($registration->expired_at || $registration->created <= $now - EventRegistration::CONFIRMATION_EXPIRATION_SECONDS) {
-                if (!$registration->expired_at) {
-                    $registration->expired_at = $now;
-                    $registration->tstamp = $now;
-                    $registration->save();
-                }
-
-                $template->class .= ' cannot-confirm';
-                $template->cannotConfirm = true;
-                $template->message = [...$template->message, $this->translator->trans('cannot_confirm_expired', [], 'im_contao_event_registration')];
-
-                return false;
-            }
 
             if (!empty($event->reg_regEnd) && $now > $event->reg_regEnd) {
                 $template->class .= ' cannot-confirm';
