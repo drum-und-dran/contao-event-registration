@@ -97,7 +97,8 @@ class EventRegistrationConfirmController extends AbstractFrontendModuleControlle
 
     private function processConfirm(Template $template, CalendarEventsModel $event, EventRegistrationModel $registration): void
     {
-        // Check if already confirmed
+        // A confirmed registration is final for the DOI flow. Check this before
+        // any event or waiting-list related state is evaluated.
         if ($registration->confirmed) {
             $template->class .= ' already-confirmed';
             $template->alreadyConfirmed = true;
