@@ -131,7 +131,15 @@ class EventRegistrationConfirmController extends AbstractFrontendModuleControlle
                 return false;
             }
 
-            if ($registration->expired_at) {
+            $now = time();
+
+            if ($registration->expired_at || $registration->created <= $now - EventRegistration::CONFIRMATION_EXPIRATION_SECONDS) {
+                if (!$registration->expired_at) {
+                    $registration->expired_at = $now;
+                    $registration->tstamp = $now;
+                    $registration->save();
+                }
+
                 $template->class .= ' cannot-confirm';
                 $template->cannotConfirm = true;
                 $template->message = [...$template->message, $this->translator->trans('cannot_confirm_expired', [], 'im_contao_event_registration')];
@@ -139,7 +147,7 @@ class EventRegistrationConfirmController extends AbstractFrontendModuleControlle
                 return false;
             }
 
-            if (!empty($event->reg_regEnd) && time() > $event->reg_regEnd) {
+            if (!empty($event->reg_regEnd) && $now > $event->reg_regEnd) {
                 $template->class .= ' cannot-confirm';
                 $template->cannotConfirm = true;
                 $template->message = [...$template->message, $this->translator->trans('cannot_confirm', [], 'im_contao_event_registration')];
@@ -156,8 +164,6 @@ class EventRegistrationConfirmController extends AbstractFrontendModuleControlle
 
                 return false;
             }
-
-            $now = time();
 
             $registration->confirmed = true;
             $registration->waiting = $waiting;
