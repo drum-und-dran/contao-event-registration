@@ -141,6 +141,6 @@ $GLOBALS['TL_DCA']['tl_event_registration'] = [
     ],
 
     'palettes' => [
-        'default' => '{reg_legend},form_data,amount,confirmed,confirmed_at,expired_at,cancelled',
+        'default' => '{reg_legend},form_data,amount,confirmed,confirmed_at,cancelled',
     ],
 ];

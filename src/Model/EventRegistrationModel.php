@@ -22,7 +22,6 @@ use Contao\Model;
  * @property bool   $confirmed
  * @property int|null $confirmed_at
  * @property bool   $cancelled
- * @property int|null $expired_at
  * @property string $form_data
  */
 class EventRegistrationModel extends Model
