@@ -73,12 +73,6 @@ $GLOBALS['TL_DCA']['tl_event_registration'] = [
             'eval' => ['rgxp' => 'datim', 'readonly' => true, 'tl_class' => 'w50'],
             'sql' => ['type' => 'integer', 'unsigned' => true, 'notnull' => false, 'default' => null],
         ],
-        'expired_at' => [
-            'inputType' => 'text',
-            'exclude' => true,
-            'eval' => ['rgxp' => 'datim', 'readonly' => true, 'tl_class' => 'w50'],
-            'sql' => ['type' => 'integer', 'unsigned' => true, 'notnull' => false, 'default' => null],
-        ],
         'cancelled' => [
             'inputType' => 'checkbox',
             'exclude' => true,
