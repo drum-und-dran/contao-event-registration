@@ -61,6 +61,7 @@ class EventRegistrationConfirmController extends AbstractFrontendModuleControlle
 
         $registrations = [];
         $template->message = [];
+        $confirmed = false;
 
         foreach ((array) $uuids as $uuid) {
             if (!$registration = EventRegistrationModel::findOneByUuid($uuid)) {
@@ -72,7 +73,9 @@ class EventRegistrationConfirmController extends AbstractFrontendModuleControlle
             $template->event = $event;
             $template->registration = $registration;
 
-            $this->processConfirm($template, $event, $registration);
+            if ($this->processConfirm($template, $event, $registration)) {
+                $confirmed = true;
+            }
         }
 
         $template->message = implode(' ', array_unique((array) $template->message));
@@ -88,14 +91,14 @@ class EventRegistrationConfirmController extends AbstractFrontendModuleControlle
         };
 
         // Send notification
-        if ($model->nc_notification) {
+        if ($confirmed && $model->nc_notification) {
             $this->notificationCenter->sendNotification($model->nc_notification, $tokens);
         }
 
         return $template->getResponse();
     }
 
-    private function processConfirm(Template $template, CalendarEventsModel $event, EventRegistrationModel $registration): void
+    private function processConfirm(Template $template, CalendarEventsModel $event, EventRegistrationModel $registration): bool
     {
         // A confirmed registration is final for the DOI flow. Check this before
         // any event or waiting-list related state is evaluated.
@@ -104,7 +107,7 @@ class EventRegistrationConfirmController extends AbstractFrontendModuleControlle
             $template->alreadyConfirmed = true;
             $template->message = [...$template->message, $this->translator->trans('already_confirmed', [], 'im_contao_event_registration')];
 
-            return;
+            return false;
         }
 
         // Check if already cancelled
@@ -113,7 +116,7 @@ class EventRegistrationConfirmController extends AbstractFrontendModuleControlle
             $template->alreadyCancelled = true;
             $template->message = [...$template->message, $this->translator->trans('already_cancelled', [], 'im_contao_event_registration')];
 
-            return;
+            return false;
         }
 
         // Check if past registration date
@@ -122,10 +125,11 @@ class EventRegistrationConfirmController extends AbstractFrontendModuleControlle
             $template->cannotConfirm = true;
             $template->message = [...$template->message, $this->translator->trans('cannot_confirm', [], 'im_contao_event_registration')];
 
-            return;
+            return false;
         }
 
         $registration->confirmed = true;
         $registration->save();
+        return true;
     }
 }
